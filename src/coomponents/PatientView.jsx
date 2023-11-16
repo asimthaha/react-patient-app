@@ -1,39 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PatientNavbar from "./PatientNavbar";
+import axios from "axios";
 
 const PatientView = () => {
   //   const [isLoading, changeLoading] = useState(true);
 
-  const [data, changeData] = useState([
-    {
-      name: "asim",
-      address: "abcd",
-      phone: "8281616294",
-      email: "iamasimthaha@gmail.com",
-      pincode: "685602",
-    },
-    {
-      name: "vishnu",
-      address: "abcd",
-      phone: "8281616294",
-      email: "iamasimthaha@gmail.com",
-      pincode: "685602",
-    },
-    {
-      name: "athul",
-      address: "abcd",
-      phone: "8281616294",
-      email: "iamasimthaha@gmail.com",
-      pincode: "685602",
-    },
-    {
-      name: "dev",
-      address: "abcd",
-      phone: "8281616294",
-      email: "iamasimthaha@gmail.com",
-      pincode: "685602",
-    },
-  ]);
+  const [data, changeData] = useState([]);
+
+  const fetchData = () => {
+    axios.post("http://127.0.0.1:8000/api/view/").then((response) => {
+      changeData(response.data);
+    });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   //   const fetchData =()=>{
   //         isLoading(false);

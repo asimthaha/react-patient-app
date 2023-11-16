@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PatientNavbar from "./PatientNavbar";
+import axios from "axios";
 
 const PatientAdd = () => {
   const [inputField, setInputField] = useState({
@@ -16,6 +17,11 @@ const PatientAdd = () => {
 
   const readVal = () => {
     console.log(inputField);
+    axios
+      .post("http://127.0.0.1:8000/api/add/", inputField)
+      .then((response) => {
+        alert(response.data.status);
+      });
   };
 
   return (
